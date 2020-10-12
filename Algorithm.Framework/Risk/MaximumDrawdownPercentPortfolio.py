@@ -55,6 +55,7 @@ class MaximumDrawdownPercentPortfolio(RiskManagementModel):
 
         pnl = self.GetTotalDrawdownPercent(currentValue)
         if pnl < self.maximumDrawdownPercent:
+            self.initialised = False # reset high after liquidation
             return [ PortfolioTarget(target.Symbol, 0) for target in targets ]
 
         return []
